@@ -1,0 +1,3 @@
+#!/bin/sh
+# Restart the browser if it is closed. A persistent profile stores local reminders.
+/opt/daywell/browser &

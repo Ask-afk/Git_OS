@@ -1,0 +1,11 @@
+#!/bin/sh
+while ! curl -fsS --max-time 1 http://127.0.0.1:8787/health >/dev/null 2>&1; do
+  sleep 1
+done
+while :; do
+  /usr/bin/chromium --ozone-platform=wayland --kiosk --no-first-run \
+    --disable-session-crashed-bubble --noerrdialogs --disable-pinch \
+    --overscroll-history-navigation=0 --disable-features=Translate \
+    --user-data-dir="$HOME/.config/daywell-browser" http://127.0.0.1:8787/
+  sleep 2
+done

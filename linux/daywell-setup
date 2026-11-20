@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+if ! id daywell >/dev/null 2>&1; then
+  useradd --create-home --shell /bin/bash daywell
+fi
+for group in audio video render input; do
+  if getent group "$group" >/dev/null; then usermod -aG "$group" daywell; fi
+done
+install -o daywell -g daywell -m 0644 /opt/daywell/session/profile /home/daywell/.bash_profile
+touch /var/lib/daywell-initialized

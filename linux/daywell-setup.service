@@ -1,0 +1,10 @@
+[Unit]
+Description=Prepare the tablet session
+After=local-fs.target systemd-sysusers.service
+Before=getty@tty1.service
+ConditionPathExists=!/var/lib/daywell-initialized
+
+[Service]
+Type=oneshot
+ExecStart=/opt/daywell/daywell-setup
+RemainAfterExit=yes

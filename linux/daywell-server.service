@@ -1,0 +1,21 @@
+[Unit]
+Description=Daywell local access and Agey server
+Requires=daywell-setup.service
+After=daywell-setup.service
+
+[Service]
+Type=simple
+User=daywell
+Group=daywell
+StateDirectory=daywell
+UMask=0077
+ExecStart=/usr/bin/python3 /opt/daywell/server.py --ui /opt/daywell/ui --state /var/lib/daywell/auth.json
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/daywell
+
+[Install]
+WantedBy=multi-user.target

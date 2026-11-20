@@ -1,0 +1,3 @@
+#!/bin/sh
+# Starts in the logged-in user's Wayland seat, with PAM-provided runtime directory.
+exec dbus-run-session -- /usr/bin/labwc -C /opt/daywell/session
