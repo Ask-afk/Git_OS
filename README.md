@@ -66,5 +66,3 @@ The local server has automated checks for setup, login, guarded files, lockout, 
 ## Included assets
 
 The interface illustrations and offline audio are included in the source. The contact portraits and album are illustrative stock photographs from Unsplash. Upstream OS components retain their existing licenses and copyright notices, including the package documentation in /usr/share/doc.
-
-When I analyse this product it should be presentable and accessible
