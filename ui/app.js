@@ -38,6 +38,12 @@ document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;beep();if(window.TABLET_READ_ALOUD && 'speechSynthesis' in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(b.ariaLabel || b.textContent))}},true);
 async function lockTablet(){
   player.pause();
+  if(window.DAYWELL_PUBLIC_DEMO){
+    chatMessages=[];chatError='';
+    if(dialog.open)dialog.close();
+    show('home');
+    return;
+  }
   try{await fetch('/api/logout',{method:'POST',headers:{'Content-Type':'application/json','X-Daywell-Request':'1'},body:'{}'})}catch{}
   location.replace('/');
 }
@@ -81,7 +87,12 @@ function renderChat(){
 }
 screen.addEventListener('submit',async event=>{
   if(event.target.id!=='chat-form')return;
-  event.preventDefault();if(chatBusy)return;
+  event.preventDefault();
+  if(window.DAYWELL_PUBLIC_DEMO){
+    $('chat-status').textContent='Agey needs the installed version with local Ollama. This public demo supports photos, reminders, music and simulated calls.';
+    return;
+  }
+  if(chatBusy)return;
   const input=$('chat-input'),content=input.value.trim();if(!content)return;
   chatMessages.push({role:'user',content});chatMessages=chatMessages.slice(-11);input.value='';chatBusy=true;chatError='';renderChat();
   try{

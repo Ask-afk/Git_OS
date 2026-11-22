@@ -2,7 +2,28 @@
 
 Daywell OS is a 64-bit Raspberry Pi OS derivative for a single-user touchscreen tablet. It uses the upstream Linux kernel, boot firmware, drivers, and Debian package repositories. A local Wayland session runs labwc and Chromium in kiosk mode. The home screen is stored on the SD card and can start offline.
 
-## Install the supplied image
+## Try the interface
+
+The public demo is configured for GitHub Pages at https://ask-afk.github.io/Git_OS/. Deployment is pending until the repository owner enables Pages and the workflow succeeds.
+
+In the demo, try Family Photos and its next/previous buttons, mark a reminder, play Relaxing music, and try a simulated family call. Reset demo clears the current conversation and returns home. Reminder checkmarks remain stored in your browser.
+
+The demo displays sample data and explains that password protection and Agey's local model require the installed server. To try those features on your own computer, run `python3 server.py` and open http://127.0.0.1:8787/.
+
+## Project and AI assistance
+
+I started Daywell to make a Raspberry Pi tablet easier for older adults to use. AI assistance from OpenAI Codex contributed extensively to the initial interface, Linux startup files, image builder, and later authentication and Agey code. I am developing the project from that AI-assisted starting point.
+
+## Publish the demo
+
+1. Push the demo workflow and source changes to the main branch.
+2. Open this repository's Settings → Pages and select GitHub Actions as the build source.
+3. Under Actions, run Publish interface demo, or wait for its push-triggered run to succeed.
+4. Open the workflow's deployment URL and test the photo album. Use that verified URL in Crescent's playable-link field.
+
+To test the static export locally, run `python3 scripts/build-demo.py`, then `python3 -m http.server 8080 --directory public-demo`. Open http://localhost:8080/.
+
+## Build and install a Raspberry Pi image
 
 1. Use a Raspberry Pi 4 or 5 with a connected touchscreen, audio output, and a suitable power supply. The interface targets a 1280 × 800 landscape display. Prepare a spare microSD card of at least 16 GB.
 2. Open Raspberry Pi Imager. Select **Use custom** and choose **Daywell-OS-1.0-arm64.img.xz**. Select the spare card. Writing the image erases the selected card.

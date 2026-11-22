@@ -63,7 +63,7 @@ class ServerTests(unittest.TestCase):
         self.assertEqual(self.request("/api/setup", {"password": "a good password"}, origin=False)[0], 403)
         self.unlock()
         self.assertEqual(self.request("/app.js")[0], 200)
-        self.assertIn(b"My home", self.request("/")[1])
+        self.assertIn(b'<main id="screen">', self.request("/")[1])
         self.assertEqual(self.request("/api/setup", {"password": "another password"})[0], 409)
         self.assertEqual(self.request("/api/logout", {})[0], 200)
         self.assertEqual(self.request("/app.js")[0], 401)
