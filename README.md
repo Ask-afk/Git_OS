@@ -1,14 +1,24 @@
-# Daywell OS 1.0
+Daywell OS 1.0
 
 Daywell OS is a 64-bit Raspberry Pi OS derivative for a single-user touchscreen tablet. It uses the upstream Linux kernel, boot firmware, drivers, and Debian package repositories. A local Wayland session runs labwc and Chromium in kiosk mode. The home screen is stored on the SD card and can start offline.
 
 ## Try the interface
 
-The public demo is configured for GitHub Pages at https://ask-afk.github.io/Git_OS/. Deployment is pending until the repository owner enables Pages and the workflow succeeds.
+**[Open the public Daywell demo](https://ask-afk.github.io/Git_OS/)**
+
+The demo page, stylesheet, and JavaScript files returned HTTP 200 when checked on November 22, 2026. Browser interaction verification in this environment was blocked by a certificate error.
 
 In the demo, try Family Photos and its next/previous buttons, mark a reminder, play Relaxing music, and try a simulated family call. Reset demo clears the current conversation and returns home. Reminder checkmarks remain stored in your browser.
 
-The demo displays sample data and explains that password protection and Agey's local model require the installed server. To try those features on your own computer, run `python3 server.py` and open http://127.0.0.1:8787/.
+The demo displays sample data and explains that password protection and Agey's local model require the installed server. To try those features on your own computer, clone this repository and start its local server. Python 3.11 or later is required. The server uses the Python standard library.
+
+```sh
+git clone https://github.com/Ask-afk/Git_OS.git
+cd Git_OS
+python3 server.py
+```
+
+Open http://127.0.0.1:8787/. On your first visit, create a local password of at least eight characters. Agey also requires the Ollama setup described below.
 
 ## Project and AI assistance
 
@@ -24,6 +34,8 @@ I started Daywell to make a Raspberry Pi tablet easier for older adults to use. 
 To test the static export locally, run `python3 scripts/build-demo.py`, then `python3 -m http.server 8080 --directory public-demo`. Open http://localhost:8080/.
 
 ## Build and install a Raspberry Pi image
+
+Build an image using the instructions under **Customize and rebuild** before following the installation steps. Physical boot on the intended Raspberry Pi remains unverified.
 
 1. Use a Raspberry Pi 4 or 5 with a connected touchscreen, audio output, and a suitable power supply. The interface targets a 1280 × 800 landscape display. Prepare a spare microSD card of at least 16 GB.
 2. Open Raspberry Pi Imager. Select **Use custom** and choose **Daywell-OS-1.0-arm64.img.xz**. Select the spare card. Writing the image erases the selected card.
@@ -87,3 +99,4 @@ The local server has automated checks for setup, login, guarded files, lockout, 
 ## Included assets
 
 The interface illustrations and offline audio are included in the source. The contact portraits and album are illustrative stock photographs from Unsplash. Upstream OS components retain their existing licenses and copyright notices, including the package documentation in /usr/share/doc.
+
