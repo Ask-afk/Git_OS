@@ -20,10 +20,6 @@ python3 server.py
 
 Open http://127.0.0.1:8787/. On your first visit, create a local password of at least eight characters. Agey also requires the Ollama setup described below.
 
-## Project and AI assistance
-
-I started Daywell to make a Raspberry Pi tablet easier for older adults to use. AI assistance from OpenAI Codex contributed extensively to the initial interface, Linux startup files, image builder, and later authentication and Agey code. I am developing the project from that AI-assisted starting point.
-
 ## Publish the demo
 
 1. Push the demo workflow and source changes to the main branch.
